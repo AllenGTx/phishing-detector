@@ -1,0 +1,15 @@
+# Mengabaikan folder lingkungan virtual jika nanti Anda membuatnya
+venv/
+env/
+
+# Mengabaikan file cache Python yang otomatis dibuat sistem
+__pycache__/
+*.py[cod]
+
+# Mengabaikan file sistem operasi
+.DS_Store
+Thumbs.db
+
+# Jika Anda memiliki folder dataset besar (misal 14.2 GB) di dalam sini, abaikan agar tidak push ke GitHub
+/dataset/
+/extracted_frames/
