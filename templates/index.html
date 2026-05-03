@@ -1,273 +1,278 @@
-================================================================================
-📦 PHISHING DETECTOR - PAKET LENGKAP DEPLOYMENT GRATIS
-================================================================================
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhishGuard AI | Deteksi Link Modern</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2C3947;    /* Navy Dark */
+            --secondary: #547A95;  /* Muted Blue */
+            --accent: #C2A56D;     /* Gold Accent */
+            --light: #E8EDF2;      /* Off-White */
+            --white: #ffffff;
+        }
 
-Anda punya semua yang dibutuhkan untuk membuat website pendeteksi phishing 
-yang bisa diakses lewat internet GRATIS!
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
 
-================================================================================
-📖 DOKUMENTASI - BACA SESUAI KEBUTUHAN
-================================================================================
+        body {
+            background-color: var(--primary);
+            color: var(--light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
 
-1. 📌 **00_MULAI_DARI_SINI.txt**
-   👉 BACA INI DULU!
-   - Overview semua yang anda punya
-   - Penjelasan singkat setiap file
-   - FAQ cepat
-   - Instruksi next steps
-   
-2. 🚀 **PANDUAN_DEPLOY.md** (RECOMMENDED)
-   👉 Untuk step-by-step deployment
-   - Langkah 1-4: Setup lokal sampai website live
-   - Troubleshooting section
-   - Tips dan tricks
-   - Waktu: ~17 menit
+        .container {
+            width: 100%;
+            max-width: 700px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 50px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
 
-3. 📊 **PERBANDINGAN_PLATFORM.md**
-   👉 Untuk pilihan hosting alternative
-   - Render vs Railway vs Vercel vs PythonAnywhere
-   - Perbandingan harga & fitur
-   - Rekomendasi berdasarkan kebutuhan
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
 
-4. ⚡ **QUICK_REFERENCE.txt**
-   👉 Untuk cheat sheet cepat
-   - 3 langkah super singkat
-   - File yang diperlukan
-   - Link penting
-   - Troubleshooting cepat
+        .header h1 {
+            color: var(--accent);
+            font-size: 2.2rem;
+            letter-spacing: -1px;
+            margin-bottom: 10px;
+        }
 
-5. 📋 **CHECKLIST_DEPLOYMENT.md**
-   👉 Untuk mengecek progress
-   - Pre-deployment checklist
-   - Step-by-step checklist
-   - Troubleshooting checklist
-   - Post-deployment checklist
+        .header p {
+            color: var(--secondary);
+            font-size: 0.95rem;
+        }
 
-6. 📹 **VIDEO_GUIDE.md**
-   👉 Untuk step-by-step visual guide (text)
-   - Scene-by-scene breakdown
-   - What you'll see di setiap step
-   - Success criteria
-   - Timeline
+        .input-group {
+            position: relative;
+            margin-bottom: 25px;
+        }
 
-7. 📖 **README.md**
-   👉 Untuk info project lengkap
-   - Feature list
-   - API endpoints
-   - Setup lokal
-   - Model info
+        input[type="text"] {
+            width: 100%;
+            padding: 18px 25px;
+            background: rgba(232, 237, 242, 0.05);
+            border: 1px solid var(--secondary);
+            border-radius: 12px;
+            color: var(--white);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            outline: none;
+        }
 
-================================================================================
-💻 CODE FILES - SIAP PAKAI
-================================================================================
+        input[type="text"]:focus {
+            border-color: var(--accent);
+            background: rgba(232, 237, 242, 0.08);
+            box-shadow: 0 0 15px rgba(194, 165, 109, 0.2);
+        }
 
-**Backend:**
-- app.py                   - Flask aplikasi (backend logic)
-  
-**Frontend:**
-- templates/index.html     - Website UI (frontend)
+        button {
+            width: 100%;
+            padding: 16px;
+            background: var(--accent);
+            color: var(--primary);
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.2s ease, background 0.3s ease;
+        }
 
-**Configuration:**
-- requirements.txt         - Python dependencies
-- render.yaml              - Render deployment config
-- .gitignore               - Git ignore rules
+        button:hover {
+            background: #d4b882;
+            transform: translateY(-2px);
+        }
 
-**Model Files (Machine Learning):**
-- RandomForest_Phishing.joblib    - Trained model
-- tfidf_phishing.joblib            - Text vectorizer
-- scaler_phishing.joblib           - Feature scaler
+        button:active {
+            transform: translateY(0);
+        }
 
-**Utility Scripts:**
-- run_local.sh             - Script untuk run lokal (Mac/Linux)
-- run_local.bat            - Script untuk run lokal (Windows)
+        /* Result Section */
+        #result-container {
+            margin-top: 40px;
+            display: none;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 30px;
+            animation: fadeIn 0.5s ease;
+        }
 
-================================================================================
-🎯 QUICK START - PILIH JALUR ANDA
-================================================================================
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-**JALUR A: "Saya mau langsung deploy!"**
-1. Baca: 00_MULAI_DARI_SINI.txt (5 menit)
-2. Baca: PANDUAN_DEPLOY.md (10 menit)
-3. Ikuti step-by-step (17 menit)
-4. Website live! ✅
+        .result-card {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 25px;
+            border-radius: 16px;
+        }
 
-**JALUR B: "Saya mau test lokal dulu"**
-1. Jalankan run_local.bat atau run_local.sh
-2. Buka http://localhost:5000
-3. Test aplikasi
-4. Lalu lanjut JALUR A
+        .badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
 
-**JALUR C: "Saya mau cari hosting terbaik dulu"**
-1. Baca: PERBANDINGAN_PLATFORM.md
-2. Pilih platform terbaik
-3. Follow panduan deployment platform tsb
-4. Website live!
+        .phishing { background: #e74c3c; color: white; }
+        .safe { background: #27ae60; color: white; }
 
-**JALUR D: "Saya perlu visual step-by-step"**
-1. Baca: VIDEO_GUIDE.md
-2. Follow scene-by-scene
-3. Lihat success criteria di setiap step
-4. Website live!
+        .confidence-label {
+            font-size: 0.85rem;
+            color: var(--secondary);
+            margin-bottom: 5px;
+        }
 
-================================================================================
-📋 STEP-BY-STEP RINGKAS (OPSI A - TERCEPAT)
-================================================================================
+        .confidence-bar {
+            height: 8px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 25px;
+        }
 
-STEP 1: Persiapan (5 menit)
-  ☐ Download semua files
-  ☐ Buat folder: phishing-detector
-  ☐ Copy semua files ke folder
-  
-STEP 2: GitHub Setup (5 menit)
-  ☐ Daftar github.com
-  ☐ Install Git
-  ☐ git init, git add, git commit, git push
-  
-STEP 3: Create Repository (2 menit)
-  ☐ Buka github.com
-  ☐ New repository
-  ☐ Copy push commands
-  
-STEP 4: Deploy (5 menit)
-  ☐ Daftar render.com
-  ☐ Connect GitHub
-  ☐ Buat Web Service
-  ☐ Tunggu deployment selesai
-  
-STEP 5: Test (1 menit)
-  ☐ Buka URL dari Render
-  ☐ Test cek URL
-  ☐ Share!
+        .confidence-fill {
+            height: 100%;
+            background: var(--accent);
+            width: 0%;
+            transition: width 1s ease-in-out;
+        }
 
-TOTAL: ~17 MENIT WEBSITE LIVE!
+        .explanation-box {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--light);
+            border-left: 3px solid var(--accent);
+            padding-left: 20px;
+        }
 
-================================================================================
-🔗 LINK PENTING
-================================================================================
+        .loader {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
 
-Render.com              https://render.com
-GitHub                  https://github.com
-Git Download            https://git-scm.com
-GitHub Desktop (UI)     https://desktop.github.com
-Python (jika perlu)     https://python.org
+        .spinner {
+            width: 30px;
+            height: 30px;
+            border: 3px solid var(--secondary);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 1s infinite linear;
+            display: inline-block;
+        }
 
-Render Free Tier        https://render.com/pricing (unlimited)
-Railway.app             https://railway.app ($5/month)
-PythonAnywhere          https://pythonanywhere.com ($5/month)
+        @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
 
-================================================================================
-✨ FITUR YANG SUDAH READY
-================================================================================
+<div class="container">
+    <div class="header">
+        <h1>PhishGuard AI</h1>
+        <p>Analisis Link Keamanan Tingkat Lanjut dengan Machine Learning</p>
+    </div>
 
-✅ Cek URL individual dengan real-time prediction
-✅ Batch check hingga 100 URL sekaligus
-✅ Confidence score untuk setiap prediksi
-✅ Risk level classification (RENDAH/SEDANG/TINGGI)
-✅ Mobile responsive design
-✅ Modern clean UI dengan tabs
-✅ API endpoints untuk integrasi
-✅ HTTPS included (Render auto-provision)
-✅ Auto-deploy dari GitHub
-✅ Logs monitoring via Render dashboard
-✅ Gratis selamanya (fair use)
+    <div class="input-group">
+        <input type="text" id="url-input" placeholder="Masukkan atau tempel URL di sini...">
+    </div>
+    
+    <button onclick="analyzeUrl()" id="btn-text">Analisis Sekarang</button>
 
-================================================================================
-❓ FAQ CEPAT
-================================================================================
+    <div class="loader" id="loader">
+        <div class="spinner"></div>
+        <p style="margin-top: 10px; font-size: 0.8rem; color: var(--secondary);">Mengekstrak fitur & menjalankan AI...</p>
+    </div>
 
-Q: Benar-benar gratis?
-A: ✅ Ya, Render free tier unlimited
+    <div id="result-container">
+        <div class="result-card">
+            <div id="status-badge" class="badge"></div>
+            
+            <div class="confidence-label">Confidence Prediksi: <span id="confidence-text">0%</span></div>
+            <div class="confidence-bar">
+                <div id="confidence-fill" class="confidence-fill"></div>
+            </div>
 
-Q: Perlu kartu kredit?
-A: ❌ Tidak untuk free tier
+            <div class="explanation-box">
+                <strong style="display: block; margin-bottom: 8px; color: var(--accent);">Analisis AI (Penjelasan LLM):</strong>
+                <p id="explanation-text">Menunggu data...</p>
+            </div>
+        </div>
+    </div>
+</div>
 
-Q: Seberapa akurat?
-A: Tergantung training data (~95%+ typical)
+<script>
+    async function analyzeUrl() {
+        const urlInput = document.getElementById('url-input').value;
+        const btn = document.querySelector('button');
+        const loader = document.getElementById('loader');
+        const resultContainer = document.getElementById('result-container');
 
-Q: Website bisa offline?
-A: Sangat jarang, 99.5% uptime
+        if (!urlInput) {
+            alert("Harap masukkan URL");
+            return;
+        }
 
-Q: Bisa custom domain?
-A: ✅ Bisa tapi perlu upgrade plan
+        // Tampilan Loading
+        btn.style.display = 'none';
+        loader.style.display = 'block';
+        resultContainer.style.display = 'none';
 
-Q: Traffic tinggi bagaimana?
-A: Auto-scale, tetap gratis untuk fair use
+        try {
+            const response = await fetch('/api/check', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ url: urlInput })
+            });
 
-Q: Kalau error gimana?
-A: Check Render logs atau hubungi support
+            const data = await response.json();
 
-================================================================================
-🚨 JANGAN LUPA
-================================================================================
+            // Sembunyikan Loading
+            loader.style.display = 'none';
+            btn.style.display = 'block';
+            resultContainer.style.display = 'block';
 
-❗ Pastikan semua files ada:
-  - app.py
-  - requirements.txt
-  - render.yaml
-  - templates/index.html
-  - 3 file .joblib
+            // Update UI
+            const badge = document.getElementById('status-badge');
+            if (data.is_phishing) {
+                badge.innerText = "Terdeteksi Phishing";
+                badge.className = "badge phishing";
+            } else {
+                badge.innerText = "Link Aman";
+                badge.className = "badge safe";
+            }
 
-❗ Nama file .joblib harus PERSIS:
-  - RandomForest_Phishing.joblib
-  - tfidf_phishing.joblib
-  - scaler_phishing.joblib
+            document.getElementById('confidence-text').innerText = data.confidence + '%';
+            document.getElementById('confidence-fill').style.width = data.confidence + '%';
+            document.getElementById('explanation-text').innerText = data.explanation || "Analisis selesai berdasarkan pola fitur URL.";
 
-❗ Struktur folder harus:
-  phishing-detector/
-  ├── app.py
-  ├── requirements.txt
-  ├── render.yaml
-  ├── templates/
-  │   └── index.html
-  └── [3x .joblib files]
+        } catch (error) {
+            alert("Gagal menghubungi server");
+            loader.style.display = 'none';
+            btn.style.display = 'block';
+        }
+    }
+</script>
 
-❗ Jangan lupa git push sebelum deploy!
-
-================================================================================
-🎓 BELAJAR LEBIH LANJUT (SETELAH DEPLOY)
-================================================================================
-
-Flask Documentation      https://flask.palletsprojects.com
-scikit-learn Docs        https://scikit-learn.org
-Python Docs              https://docs.python.org
-Render Docs              https://render.com/docs
-GitHub Docs              https://docs.github.com
-
-YouTube: "Flask Tutorial" → Deploy on Render
-YouTube: "Machine Learning Project Deploy"
-
-================================================================================
-📞 BANTUAN
-================================================================================
-
-Jika stuck:
-1. Check dokumen yang relevant (lihat di atas)
-2. Check Render logs (Dashboard → Service → Logs)
-3. Verify semua files ada dengan nama yang benar
-4. Try rebuild dari Render (kebab menu)
-5. Baca troubleshooting section di PANDUAN_DEPLOY.md
-
-Common Issues:
-- Build gagal → Check logs, reinstall dependencies
-- Model tidak load → Cek file .joblib ada dan nama benar
-- Website blank → Check HTML syntax, app.py routing
-- Slow → Normal di free tier, cold start ~10sec
-
-================================================================================
-🎉 SELAMAT!
-================================================================================
-
-Anda punya semua tools untuk membuat website ML production-ready 
-yang di-host gratis di internet!
-
-NEXT ACTION: Baca "00_MULAI_DARI_SINI.txt" dulu! 📖
-
-Setelah itu, pilih salah satu:
-- PANDUAN_DEPLOY.md (untuk step-by-step)
-- VIDEO_GUIDE.md (untuk visual guide)
-- run_local.sh/bat (untuk test lokal)
-
-================================================================================
-Made with ❤️ for Indonesian Developers
-May 2026
-================================================================================
+</body>
+</html>
