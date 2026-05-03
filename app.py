@@ -1,3 +1,4 @@
+# Force Cache Refresh: 2026-05-03 22:20
 from flask import Flask, render_template, request, jsonify
 import joblib
 import numpy as np
@@ -12,9 +13,11 @@ app = Flask(__name__, template_folder='templates')
 
 # Load models
 try:
-    model = joblib.load('RandomForest_Phishing.joblib')
-    tfidf = joblib.load('tfidf_phishing.joblib')
-    scaler = joblib.load('scaler_phishing.joblib')
+    # Memastikan path model terbaca di environment Vercel
+    base_path = os.path.dirname(__file__)
+    model = joblib.load(os.path.join(base_path, 'RandomForest_Phishing.joblib'))
+    tfidf = joblib.load(os.path.join(base_path, 'tfidf_phishing.joblib'))
+    scaler = joblib.load(os.path.join(base_path, 'scaler_phishing.joblib'))
     print("✓ Models loaded successfully")
 except Exception as e:
     print(f"Error loading models: {e}")
@@ -43,32 +46,47 @@ def extract_features(url):
         return None, None
 
 def generate_llm_explanation(url, is_phishing, confidence, features_dict, parsed_url):
-    """Generate penjelasan menggunakan rule-based LLM"""
+    """Rule-based explanation"""
     reasons = []
-    if not features_dict or not parsed_url:
-        return "Tidak dapat menganalisis URL ini."
-    
-    # Logic penjelasan (disingkat untuk efisiensi copas)
     if is_phishing:
         if features_dict['url_length'] > 75: reasons.append("📏 URL sangat panjang")
         if features_dict['num_dots'] > 3: reasons.append("🔴 Terlalu banyak titik")
-        if not reasons: reasons.append(f"🚨 Terdeteksi pola phishing ({confidence}%)")
-        explanation = "Alasan link ini terdeteksi sebagai PHISHING:\n\n" + "\n".join(f"  {r}" for r in reasons)
+        if not reasons: reasons.append(f"🚨 Pola mencurigakan ({confidence}%)")
+        explanation = "Alasan deteksi PHISHING:\n" + "\n".join(reasons)
     else:
-        explanation = "Alasan link ini terdeteksi sebagai AMAN:\n\n✅ Struktur URL tampak normal."
-    
+        explanation = "✅ Link ini tampak aman untuk dikunjungi."
     return explanation
 
-def predict_phishing(url):
-    """Prediksi apakah URL adalah phishing"""
+# --- ROUTING ---
+
+@app.route('/')
+@app.route('/index')
+@app.route('/home')
+def home():
+    # Ini akan mengambil file dari folder templates/index.html
+    return render_template('index.html')
+
+@app.route('/health')
+def health():
+    return jsonify({
+        'status': 'ok', 
+        'message': 'Backend is active',
+        'timestamp': '2026-05-03 22:20'
+    }), 200
+
+@app.route('/api/check', methods=['POST'])
+def check_url():
+    data = request.get_json()
+    url = data.get('url', '').strip()
+    if not url:
+        return jsonify({'error': 'URL kosong'}), 400
+    
+    if not url.startswith('http'):
+        url = 'http://' + url
+        
     try:
         features_dict, parsed_url = extract_features(url)
-        if features_dict is None:
-            return {'error': 'URL format tidak valid'}, 400
-        
         basic_features = np.array([list(features_dict.values())])
-        
-        # Gunakan scaler sesuai input yang diharapkan model Anda
         feature_scaled = scaler.transform(basic_features)
         
         prediction = model.predict(feature_scaled)[0]
@@ -77,40 +95,14 @@ def predict_phishing(url):
         is_phishing = int(prediction) == 1
         confidence = float(max(probability)) * 100
         
-        explanation = generate_llm_explanation(url, is_phishing, confidence, features_dict, parsed_url)
-        
-        return {
+        return jsonify({
             'url': url,
             'is_phishing': is_phishing,
             'confidence': round(confidence, 2),
-            'risk_level': 'TINGGI' if is_phishing and confidence > 80 else 'SEDANG' if is_phishing else 'RENDAH',
-            'explanation': explanation
-        }, 200
+            'explanation': generate_llm_explanation(url, is_phishing, confidence, features_dict, parsed_url)
+        })
     except Exception as e:
-        return {'error': str(e)}, 500
-
-# --- BAGIAN ROUTING YANG DIPERKUAT ---
-@app.route('/')
-@app.route('/index')
-@app.route('/home')
-def home():
-    # Memaksa Flask mencari index.html di dalam folder templates
-    return render_template('index.html')
-
-@app.route('/health')
-def health():
-    return jsonify({'status': 'ok', 'message': 'Backend is running'}), 200
-
-@app.route('/api/check', methods=['POST'])
-def check_url():
-    data = request.get_json()
-    url = data.get('url', '').strip()
-    if not url:
-        return jsonify({'error': 'URL tidak boleh kosong'}), 400
-    if not url.startswith('http'):
-        url = 'http://' + url
-    result, status = predict_phishing(url)
-    return jsonify(result), status
+        return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
     app.run(debug=False)
