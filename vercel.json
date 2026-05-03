@@ -8,8 +8,17 @@
   ],
   "routes": [
     {
-      "src": "/(.*)",
+      "src": "/health",
       "dest": "app.py"
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "app.py"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "app.py",
+      "headers": { "cache-control": "no-cache, no-store, must-revalidate" }
     }
   ]
 }
